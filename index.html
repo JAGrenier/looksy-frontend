@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Looksy</title>
+    <script defer src="app.js"></script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+        model-viewer {
+            width:200px;
+            height: 300px;
+            margin: 0 auto;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Looksy!</h1>
+    <model-viewer src="Standing_lamp/Standing_lamp_01.gltf" camera-controls auto-rotate ar ios-src="Standing_lamp/Standing_lamp_01.usdz"></model-viewer>
+
+    <div class="create-user-container">
+        <form>
+            <input type="text" name="username" placeholder="Username">
+            <input type="text" name="email" placeholder="Email">
+            <input type="password" name="password" placeholder="Password">
+            <input type="submit" value="Create New User">
+        </form>
+    </div>
+
+    <div class="card-container"></div>
+    
+</body>
+</html>
