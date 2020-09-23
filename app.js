@@ -18,6 +18,20 @@ function renderAllModels(model) {
     const modelAR = render3DARModel(model, modelCard)
 }
 
+function renderModelName(model, modelCard) {
+    const name = document.createElement('h3')
+    name.textContent = model.name
+    modelCard.appendChild(name)
+    return name
+}
+
+function render3DARModel(model, modelCard) {
+    const render = document.createElement('div')
+    render.innerHTML = `<model-viewer src="${model.gltfsrc}" camera-controls auto-rotate ar ios-src="${model.usdzsrc}"></model-viewer>`
+    modelCard.appendChild(render)
+    return render
+}
+
 function generateModelCard() {
     const cardContainer = document.querySelector('.card-container')
     const modelCard = document.createElement('div')
