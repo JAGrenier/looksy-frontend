@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono&family=Duru+Sans&display=swap");
+
+
+
+body {
+    background-color: #DCEDFF;
+}
+
+header {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    width: 100%;
+    background: transparent;
+    padding: 10px 16px;
+    color: #312F2F;
+    display: flex;
+    background-color: #2C8C99;
+    font-family: "Duru Sans", sans-serif;
+    font-weight: 500;
+    margin:0px auto;
+    left:0px;
+    right:0px;
+    height:80px;
+}
+
+main {
+    margin-top:150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.credits {
+    font-size: 14px;
+}
+
+/* @media (min-width: 812px) {
+    body {
+        background-color: red;
+    }
+} */
