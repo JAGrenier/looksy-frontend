@@ -1,11 +1,35 @@
-const baseURL = "https://looksy-backend.herokuapp.com/"
-const itemURL = `${baseURL}/items`
-const userURL = `${baseURL}/users`
+const $ = {
+    baseURL: "https://looksy-backend.herokuapp.com",
+}
 
-fetchItems()
+const createUserButton = document.querySelector('.create-user-button')
+const loginButton = document.querySelector('.login-button')
+
+createUserButton.addEventListener('click', (event) => displayCreateUserForm(event))
+loginButton.addEventListener('click', (event) => displayLoginForm(event))
+
+function displayLoginForm(event) {
+    const loginForm = document.querySelector('.login-form')
+    const createUserForm = document.querySelector('.new-user-form')
+    loginForm.classList.toggle("hidden")
+    if (!createUserForm.classList.contains("hidden")) {
+        createUserForm.classList.toggle("hidden")
+    }
+}
+
+function displayCreateUserForm(event) {
+    const loginForm = document.querySelector('.login-form')
+    const createUserForm = document.querySelector('.new-user-form')
+    createUserForm.classList.toggle("hidden")
+    if (!loginForm.classList.contains("hidden")) {
+        loginForm.classList.toggle("hidden")
+    }
+}
+
+// fetchItems()
 
 function fetchItems() {
-    fetch(`${itemURL}`)
+    fetch(`${$.baseURL}/items`)
         .then(response => response.json())
         .then(render3DModels)
 }
@@ -19,7 +43,15 @@ function renderAllModels(model) {
     const modelAR = render3DARModel(model)
     const name = renderModelName(model)
     const author = renderAuthorLink(model)
-    modelCard.append(modelAR, name, author)
+    const favoriteButton = renderFavoriteButton(model)
+    modelCard.append(modelAR, name, author, favoriteButton)
+}
+
+function renderFavoriteButton(model) {
+    const favoriteButton = document.createElement('button')
+    favoriteButton.textContent = "heart"
+    favoriteButton.dataset.modelId = model.id
+    return favoriteButton
 }
 
 function renderModelName(model) {

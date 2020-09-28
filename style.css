@@ -4,6 +4,10 @@ a, a:visited {
     color:gray;
 }
 
+.hidden {
+    display: none;
+}
+
 body {
     background-color: #DCEDFF;
     font-family: "Duru Sans", sans-serif;
@@ -30,13 +34,12 @@ header {
 h3 {
     margin-bottom: 5px;
     font-weight: 900;
-    font-family: "Duru Sans", sans-serif;
 }
 
 main {
     margin-top:150px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
