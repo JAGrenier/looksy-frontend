@@ -28,12 +28,12 @@ async function logUserData(data) {
     $.userId = user.id
 }
 
-function loginUser(username, password) {
+async function loginUser(username, password) {
     const headers = {
         "Accept": "application/json",
         "Content-Type": "application/json"
     }
-    fetch(`${$.baseURL}/login`, {
+    await fetch(`${$.baseURL}/login`, {
         method: "POST",
         headers,
         body: JSON.stringify({username, password})
