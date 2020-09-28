@@ -21,7 +21,7 @@ function createUserLogin(event) {
     loginUser(username, password)
 }
 
-function logUserData(data) {
+async function logUserData(data) {
     let {user, token} = data
     localStorage.setItem('token', token)
     localStorage.setItem('username', user.username)
@@ -58,13 +58,13 @@ function deleteForms() {
     signUpButtons.remove()
 }
 
-function createNewUser(event) {
+async function createNewUser(event) {
     event.preventDefault()
     const formData = new FormData(event.target)
     const username = formData.get("username")
     const email = formData.get("email")
     const password = formData.get("password")
-    postNewUser(username, email, password)
+    await postNewUser(username, email, password)
     loginUser(username, password)
 }
 
