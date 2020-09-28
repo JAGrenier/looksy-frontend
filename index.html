@@ -18,34 +18,35 @@
 <body>
     <header>
         <h1 class="header">Looksy</h1>
-        <nav>
-            <a>Profile</a>
+        <nav class="menu">
+            <a href="/">Home</a>
+            <a>My Profile</a>
+            <a>Community</a>
             <a>Github</a>
             <a>Contact</a>
+            <a href="/" action="logout()">Logout</a>
         </nav>
     </header>
-    
-    <section class="forms">
-        
-    </section>
     <main>
-        <div>
-            <button class="create-user-button">Create New User</button>
-            <button class="login-button">Login</button>
-        </div>
-        <div class="create-user">
-            <form class="new-user-form hidden">
-                <input type="text" name="username" placeholder="Username">
-                <input type="text" name="email" placeholder="Email">
-                <input type="password" name="password" placeholder="Password">
-                <input type="submit" value="Create New User">
-            </form>
-            <form class="login-form hidden">
-                <input type="text" name="username" placeholder="Username">
-                <input type="password" name="password" placeholder="Password">
-                <input type="submit" value="Create New User">
-            </form>
-        </div>
+        <section class="forms">
+            <div>
+                <button class="create-user-button">Create New User</button>
+                <button class="login-button">Login</button>
+            </div>
+            <div class="create-user">
+                <form class="new-user-form hidden">
+                    <input type="text" name="username" placeholder="Username">
+                    <input type="text" name="email" placeholder="Email">
+                    <input type="password" name="password" placeholder="Password">
+                    <input type="submit" value="Create New User">
+                </form>
+                <form class="login-form hidden">
+                    <input type="text" name="username" placeholder="Username">
+                    <input type="password" name="password" placeholder="Password">
+                    <input type="submit" value="Create New User">
+                </form>
+            </div>
+        </section>
         <div class="card-container">
             
         </div>
