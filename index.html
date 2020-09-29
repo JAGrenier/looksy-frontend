@@ -17,18 +17,37 @@
 </head>
 <body>
     <header>
-        <h1 class="header">Looksy</h1>
-        <nav class="menu">
-            <a href="/">Home</a>
-            <a class="menu-button hidden">My Profile</a>
-            <a>Community</a>
-            <a>Github</a>
-            <a>Contact</a>
-            <a href="/" class="menu-button hidden" action="logout()">Logout</a>
-        </nav>
+        <div class="title-card">
+            <h1 class="header">LOOKSY</h1>
+        </div>    
+        <div class="hamnav">
+            <div class="ham-menu">
+                <span id="bar1" class="bar"></span>
+                <span id="bar2" class="bar"></span>
+                <span id="bar3" class="bar"></span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a class="home link" href="/">Home</a></li>
+                <li><a class="link">Community</a></li>
+                <li><a class="contact link" onclick="contactsOverlay()">Contact</a></li>
+            </ul>
+        </div>
+        <div class="menu-bg" id="menu-bg"></div>
     </header>
     <main>
-        <section class="forms">
+        <div class="overlay-container">         
+            <section id="contact-overlay">
+                    <img id="contacts-x-icon" src="X-icon.png" onclick="contactsOverlay()">
+                    <h3>T. J. Bachorz</h3>
+                    <div id="contacts">
+                        <a class="link" href="https://github.com/TJBachorz">Github</a>
+                        <a class="link" href="https://www.linkedin.com/in/tjbachorz/">LinkedIn</a>
+                        <a class="link" href="mailto: TJBachorz@gmail.com">Email</a>
+                    </div>
+            </section>
+        </div>
+            <section class="forms">
+        </div>
             <div>
                 <button class="create-user-button">Create New User</button>
                 <button class="login-button">Login</button>
