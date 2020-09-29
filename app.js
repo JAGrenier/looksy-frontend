@@ -1,8 +1,8 @@
 const $ = {
     menu: document.querySelector('.ham-menu'),
-    // baseURL: "https://looksy-backend.herokuapp.com",
+    baseURL: "https://looksy-backend.herokuapp.com",
     userId: null,
-    baseURL: "http://localhost:3000",
+    // baseURL: "http://localhost:3000",
     loginForm: document.querySelector('.login-form'),
     createUserForm: document.querySelector('.new-user-form'),
     createUserButton: document.querySelector('.create-user-button'),
