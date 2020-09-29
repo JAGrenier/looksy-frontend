@@ -34,6 +34,7 @@ async function logUserData(data) {
     localStorage.setItem('token', token)
     localStorage.setItem('username', user.username)
     $.userId = user.id
+    createWelcomeMessage(user)
 }
 
 async function loginUser(username, password) {
@@ -47,13 +48,15 @@ async function loginUser(username, password) {
         body: JSON.stringify({username, password})
     }).then(response => response.json())
         .then(logUserData)
-        .then(createWelcomeMessage)
     userSetup()
 }
 
-// function createWelcomeMessage(user) {
-
-// }
+async function createWelcomeMessage(user) {
+    const titleContainer = document.querySelector('.title-card')
+    const welcome = document.createElement('p')
+    welcome.textContent = `Welcome ${user.username}!`
+    titleContainer.append(welcome)
+}
 
 function userSetup() {
     deleteForms()
@@ -71,12 +74,6 @@ function createMenu() {
     homeLink.insertAdjacentElement('afterend', profileLink)
     lastLink.insertAdjacentElement('afterend', logoutLink)
     logoutLink.addEventListener('click', logout)
-    // const lis = document.querySelectorAll('.nav-links > li')
-    // let i = lis.length * 10
-    // lis.forEach(element => {
-    //     element.style.padding = `${i}px`
-    //     i = i - 4
-    // })
 }
 
 function deleteForms() {
@@ -148,6 +145,56 @@ function renderAllModels(model) {
     const author = renderAuthorLink(model)
     const favoriteButton = renderFavoriteButton(model)
     modelCard.append(modelAR, name, author, favoriteButton)
+    checkIfFavorited(model, favoriteButton)
+    favoriteButton.addEventListener('click', createOrDestoryFavorite)
+}
+
+function checkIfFavorited(model, favoriteButton) {
+    const favorite = model.favorites.find(favorite => favorite.user_id === $.userId)
+    if (favorite) {
+        toggleFavoriteClass(favoriteButton)
+        favoriteButton.dataset.favId = favorite.id
+    }
+}
+
+function createOrDestoryFavorite(event) {
+    if (event.target.classList.contains("favorite")) {
+        toggleFavoriteClass(event.target)
+        destroyFavorite(event)
+    } else {
+        toggleFavoriteClass(event.target)
+        createFavorite(event)
+    }
+}
+
+function toggleFavoriteClass(target) {
+    target.classList.toggle("favorite")
+}
+
+function destroyFavorite(event) {
+    fetchCallFavorites(`${$.baseURL}/favorites/${event.target.dataset.favId}`, "DELETE")
+    delete event.target.dataset.favId
+}
+
+function createFavorite(event) {
+    const favorite = {user_id: $.userId, item_id: event.target.dataset.modelId}
+    fetchCallFavorites(`${$.baseURL}/favorites`, "POST", favorite)
+        .then(parseResponse)
+        .then(favorite => setFavoriteId(favorite, event))
+}
+
+async function setFavoriteId(favorite, event) {
+    event.target.dataset.favId = favorite.id
+}
+
+function fetchCallFavorites(url, method, bodyData=null) {
+    const headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem('token')}`
+    }
+    const body = JSON.stringify(bodyData)
+    return fetch(url, {method, headers, body})
 }
 
 function renderFavoriteButton(model) {
@@ -187,4 +234,8 @@ function generateModelCard() {
 
 function logout() {
     localStorage.clear()
+}
+
+function parseResponse(response) {
+    return response.json()
 }
