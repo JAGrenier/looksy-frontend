@@ -17,7 +17,7 @@ $.loginForm.addEventListener('submit', createUserLogin)
 
 function animateMenu() {
     $.menu.classList.toggle("animated")
-    document.querySelector('.nav-links').classList.toggle("animated")
+    document.querySelector('#nav-links').classList.toggle("animated")
     document.querySelector('.menu-bg').classList.toggle("animated-bg")
 }
 
@@ -47,7 +47,7 @@ async function loginUser(username, password) {
         body: JSON.stringify({username, password})
     }).then(response => response.json())
         .then(logUserData)
-        // .then(createWelcomeMessage)
+        .then(createWelcomeMessage)
     userSetup()
 }
 
@@ -57,8 +57,26 @@ async function loginUser(username, password) {
 
 function userSetup() {
     deleteForms()
-    // createMenu()
+    createMenu()
     fetchItems()
+}
+
+function createMenu() {
+    const profileLink = document.createElement('li')
+    const homeLink = document.querySelector('.nav-links').firstElementChild
+    const logoutLink = document.createElement('li')
+    const lastLink = document.querySelector('.nav-links').lastElementChild
+    profileLink.innerHTML = `<a class="link">My Profile</a>`
+    logoutLink.innerHTML = `<a href="/" class="link">Logout</a>`
+    homeLink.insertAdjacentElement('afterend', profileLink)
+    lastLink.insertAdjacentElement('afterend', logoutLink)
+    logoutLink.addEventListener('click', logout)
+    // const lis = document.querySelectorAll('.nav-links > li')
+    // let i = lis.length * 10
+    // lis.forEach(element => {
+    //     element.style.padding = `${i}px`
+    //     i = i - 4
+    // })
 }
 
 function deleteForms() {
