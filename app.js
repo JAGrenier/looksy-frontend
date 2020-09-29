@@ -6,7 +6,7 @@ const $ = {
     loginForm: document.querySelector('.login-form'),
     createUserForm: document.querySelector('.new-user-form'),
     createUserButton: document.querySelector('.create-user-button'),
-    loginButton: document.querySelector('.login-button')
+    loginButton: document.querySelector('.login-button'),
 }
 
 $.menu.addEventListener('click', animateMenu)
@@ -14,6 +14,15 @@ $.createUserButton.addEventListener('click', (event) => displayCreateUserForm(ev
 $.loginButton.addEventListener('click', (event) => displayLoginForm(event))
 $.createUserForm.addEventListener('submit', createNewUser)
 $.loginForm.addEventListener('submit', createUserLogin)
+
+function contactsOverlay(){
+    const overlay = document.querySelector('#contact-overlay')
+    if (overlay.style.display === "flex") {
+        overlay.style.display = "none"
+    } else {
+    overlay.style.display = "flex"
+    }
+}
 
 function animateMenu() {
     $.menu.classList.toggle("animated")
@@ -144,7 +153,7 @@ function renderAllModels(model) {
     const name = renderModelName(model)
     const author = renderAuthorLink(model)
     const favoriteButton = renderFavoriteButton(model)
-    modelCard.append(modelAR, name, author, favoriteButton)
+    modelCard.append(modelAR, name, favoriteButton, author)
     checkIfFavorited(model, favoriteButton)
     favoriteButton.addEventListener('click', createOrDestoryFavorite)
 }
@@ -158,7 +167,7 @@ function checkIfFavorited(model, favoriteButton) {
 }
 
 function createOrDestoryFavorite(event) {
-    if (event.target.classList.contains("favorite")) {
+    if (event.target.classList.contains("favorited")) {
         toggleFavoriteClass(event.target)
         destroyFavorite(event)
     } else {
@@ -168,7 +177,7 @@ function createOrDestoryFavorite(event) {
 }
 
 function toggleFavoriteClass(target) {
-    target.classList.toggle("favorite")
+    target.classList.toggle("favorited")
 }
 
 function destroyFavorite(event) {
@@ -199,7 +208,8 @@ function fetchCallFavorites(url, method, bodyData=null) {
 
 function renderFavoriteButton(model) {
     const favoriteButton = document.createElement('button')
-    favoriteButton.textContent = "heart"
+    favoriteButton.classList.add("favorite-button")
+    favoriteButton.innerHTML = `&hearts;`
     favoriteButton.dataset.modelId = model.id
     return favoriteButton
 }
