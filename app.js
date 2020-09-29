@@ -1,4 +1,5 @@
 const $ = {
+    menu: document.querySelector('.ham-menu'),
     // baseURL: "https://looksy-backend.herokuapp.com",
     userId: null,
     baseURL: "http://localhost:3000",
@@ -8,10 +9,17 @@ const $ = {
     loginButton: document.querySelector('.login-button')
 }
 
+$.menu.addEventListener('click', animateMenu)
 $.createUserButton.addEventListener('click', (event) => displayCreateUserForm(event))
 $.loginButton.addEventListener('click', (event) => displayLoginForm(event))
 $.createUserForm.addEventListener('submit', createNewUser)
 $.loginForm.addEventListener('submit', createUserLogin)
+
+function animateMenu() {
+    $.menu.classList.toggle("animated")
+    document.querySelector('.nav-links').classList.toggle("animated")
+    document.querySelector('.menu-bg').classList.toggle("animated-bg")
+}
 
 function createUserLogin(event) {
     event.preventDefault()
