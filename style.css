@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono&family=Duru+Sans&display=swap");
 
+.header > a:visited {
+    color: #312F2F;
+    text-decoration: none;
+}
+
 a, a:visited { color:gray; }
 
 .title-card {padding-left: 35px;}
@@ -199,11 +204,12 @@ h3 {
 .favorite-button, .favorite-button.favorited {
     float: right;
     color: black;
-    height: 45px;
-    width: 45px;
+    height: 30px;
+    width: 30px;
     font-size: 60px;
     border: none;
     background-color: #DCEDFF;
+    margin-right: 5px;
 }
 
 button:focus { outline:none; }
@@ -229,3 +235,12 @@ main {
         background-color: red;
     }
 } */
+
+/* PROFILE PAGE */
+
+.user-info {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}

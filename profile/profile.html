@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>Looksy</title>
+    <script defer src="profile.js"></script>
+</head>
+<body>
+    <header>
+        <div class="title-card">
+            <h1 class="header"><a href="/">LOOKSY</a></h1>
+        </div>    
+        <div class="hamnav">
+            <div class="ham-menu">
+                <span id="bar1" class="bar"></span>
+                <span id="bar2" class="bar"></span>
+                <span id="bar3" class="bar"></span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a class="home link" href="/">Home</a></li>
+                <li><a href="../profile/profile.html" class="link">My Profile</a></li>
+                <li><a class="link">Community</a></li>
+                <li><a class="contact link" onclick="contactsOverlay()">Contact</a></li>
+                <li><a href="/" class="link">Logout</a></li>
+            </ul>
+        </div>
+        <div class="menu-bg" id="menu-bg"></div>
+    </header>
+    <main>
+        <div class="overlay-container">         
+            <section id="contact-overlay">
+                    <img id="contacts-x-icon" src="../X-icon.png" onclick="contactsOverlay()">
+                    <h3>T. J. Bachorz</h3>
+                    <div id="contacts">
+                        <a class="link" href="https://github.com/TJBachorz">Github</a>
+                        <a class="link" href="https://www.linkedin.com/in/tjbachorz/">LinkedIn</a>
+                        <a class="link" href="mailto: TJBachorz@gmail.com">Email</a>
+                    </div>
+            </section>
+        </div> 
+        <div class="user-info">
+            <h3 class="username"></h3>
+            <form id="photo-upload-form">
+                <input id="upload" type="file">
+                <input type="submit" value="Upload">
+            </form>
+            <img>
+            <desc>needs table</desc>
+            <img alt="future looksys">
+        </div>
+    </main>
+    
+</body>
+</html>

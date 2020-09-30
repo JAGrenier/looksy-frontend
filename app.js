@@ -1,8 +1,8 @@
 const $ = {
     menu: document.querySelector('.ham-menu'),
-    baseURL: "https://looksy-backend.herokuapp.com",
+    // baseURL: "https://looksy-backend.herokuapp.com",
+    baseURL: "http://localhost:3000",
     userId: null,
-    // baseURL: "http://localhost:3000",
     loginForm: document.querySelector('.login-form'),
     createUserForm: document.querySelector('.new-user-form'),
     createUserButton: document.querySelector('.create-user-button'),
@@ -41,7 +41,7 @@ function createUserLogin(event) {
 async function logUserData(data) {
     let {user, token} = data
     localStorage.setItem('token', token)
-    localStorage.setItem('username', user.username)
+    localStorage.setItem('id', user.id)
     $.userId = user.id
     createWelcomeMessage(user)
 }
@@ -55,14 +55,14 @@ async function loginUser(username, password) {
         method: "POST",
         headers,
         body: JSON.stringify({username, password})
-    }).then(response => response.json())
+    }).then(parseResponse)
         .then(logUserData)
     userSetup()
 }
 
 async function createWelcomeMessage(user) {
     const titleContainer = document.querySelector('.title-card')
-    const welcome = document.createElement('p')
+    const welcome = document.querySelector('.welcome-user')
     welcome.textContent = `Welcome ${user.username}!`
     titleContainer.append(welcome)
 }
@@ -78,7 +78,7 @@ function createMenu() {
     const homeLink = document.querySelector('.nav-links').firstElementChild
     const logoutLink = document.createElement('li')
     const lastLink = document.querySelector('.nav-links').lastElementChild
-    profileLink.innerHTML = `<a class="link">My Profile</a>`
+    profileLink.innerHTML = `<a href="../profile/profile.html?user_id=${localStorage.getItem('id')}" class="link">My Profile</a>`
     logoutLink.innerHTML = `<a href="/" class="link">Logout</a>`
     homeLink.insertAdjacentElement('afterend', profileLink)
     lastLink.insertAdjacentElement('afterend', logoutLink)
@@ -222,7 +222,6 @@ function renderModelName(model) {
 
 function render3DARModel(model) {
     const render = document.createElement('div')
-    render.src = model.gltfsrc
     render.innerHTML = `<model-viewer src="${model.gltfsrc}" camera-controls auto-rotate magic-leap ar ios-src="${model.usdzsrc}"></model-viewer>`
     return render
 }
