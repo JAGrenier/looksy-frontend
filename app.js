@@ -1,27 +1,11 @@
 const $ = {
     menu: document.querySelector('.ham-menu'),
-    // baseURL: "https://looksy-backend.herokuapp.com",
-    baseURL: "http://localhost:3000",
+    baseURL: "https://looksy-backend.herokuapp.com",
     userId: null,
     loginForm: document.querySelector('.login-form'),
     createUserForm: document.querySelector('.new-user-form'),
     createUserButton: document.querySelector('.create-user-button'),
     loginButton: document.querySelector('.login-button'),
-}
-
-$.menu.addEventListener('click', animateMenu)
-$.createUserButton.addEventListener('click', (event) => displayCreateUserForm(event))
-$.loginButton.addEventListener('click', (event) => displayLoginForm(event))
-$.createUserForm.addEventListener('submit', createNewUser)
-$.loginForm.addEventListener('submit', createUserLogin)
-
-function contactsOverlay(){
-    const overlay = document.querySelector('#contact-overlay')
-    if (overlay.style.display === "flex") {
-        overlay.style.display = "none"
-    } else {
-    overlay.style.display = "flex"
-    }
 }
 
 if (localStorage.getItem('id')) {
@@ -30,6 +14,21 @@ if (localStorage.getItem('id')) {
     }).then(parseResponse)
     .then(createWelcomeMessage)
     userSetup()
+}
+
+$.menu.addEventListener('click', animateMenu)
+$.createUserButton.addEventListener('click', (event) => displayCreateUserForm(event))
+$.loginButton.addEventListener('click', (event) => displayLoginForm(event))
+$.createUserForm.addEventListener('submit', createNewUser)
+$.loginForm.addEventListener('submit', createUserLogin)
+
+function contactsOverlay() {
+    const overlay = document.querySelector('#contact-overlay')
+    if (overlay.style.display === "flex") {
+        overlay.style.display = "none"
+    } else {
+    overlay.style.display = "flex"
+    }
 }
 
 function animateMenu() {

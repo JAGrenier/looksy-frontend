@@ -1,10 +1,7 @@
-// const { parse } = require("path")
-
 const $ = {
     menu: document.querySelector('.ham-menu'),
     uploadURL: "https://looksy-file-uploader.herokuapp.com/upload",
-    // baseURL: "https://looksy-backend.herokuapp.com",
-    baseURL: "http://localhost:3000",
+    baseURL: "https://looksy-backend.herokuapp.com",
     userId: null,
     upload: document.querySelector('#photo-upload-form')
 }
@@ -60,7 +57,6 @@ function updateUserBio(event, user) {
     event.preventDefault()
     const formData = new FormData(event.target)
     const bioData = formData.get('bio')
-    console.log(bioData)
     fetch(`${$.baseURL}/users/${user.id}`, {
         method: "PATCH",
         headers: {
@@ -68,10 +64,12 @@ function updateUserBio(event, user) {
             "Authorization": `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify({
-            bio: bioData
+            user: {
+                bio: bioData
+            }
         })
     }).then(parseResponse)
-    .then(console.log)
+    .then(renderBio)
 }
 
 function renderBio(user) {
@@ -119,7 +117,6 @@ function uploadFile(event, user) {
         body: formData
     }).then(parseResponse)
     .then(({data, error}) => {
-        console.log(error)
         updateUserImage(data, user)
             .then(parseResponse)
             .then(renderUpdatedImage)
@@ -140,7 +137,9 @@ async function updateUserImage(data, user) {
             "Authorization": `Bearer ${localStorage.getItem('token')}`,
         },
         body: JSON.stringify({
-            image: data
+            user: {
+                image: data
+            }
         })
     })
 }
@@ -157,7 +156,7 @@ async function updateUserImage(data, user) {
 
 $.menu.addEventListener('click', animateMenu)
 
-function contactsOverlay() {
+function contactOverlay() {
     const overlay = document.querySelector('#contact-overlay')
     if (overlay.style.display === "flex") {
         overlay.style.display = "none"
@@ -179,12 +178,3 @@ function animateMenu() {
     document.querySelector('#nav-links').classList.toggle("animated")
     document.querySelector('.menu-bg').classList.toggle("animated-bg")
 }
-
-
-
-
-
-
-
-
-

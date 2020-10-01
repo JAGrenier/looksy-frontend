@@ -38,7 +38,7 @@ img#contacts-x-icon {
 }
 
 #contact-overlay {
-    position:absolute;
+    position:fixed;
     height: 200px;
     width: 300px;
     top:50%;
@@ -51,7 +51,7 @@ img#contacts-x-icon {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 300px;
+    margin-top: 200px;
 }
 
 /* END CONTACT OVERLAY */
