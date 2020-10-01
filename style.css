@@ -206,7 +206,7 @@ h3 {
     color: black;
     height: 30px;
     width: 30px;
-    font-size: 60px;
+    font-size: 40px;
     border: none;
     background-color: #DCEDFF;
     margin-right: 5px;
@@ -243,4 +243,10 @@ main {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+}
+
+#avatar {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
 }

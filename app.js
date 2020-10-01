@@ -24,6 +24,14 @@ function contactsOverlay(){
     }
 }
 
+if (localStorage.getItem('id')) {
+    fetch(`${$.baseURL}/users/${localStorage.getItem('id')}`, {
+        headers: {"Authorization": `Bearer ${localStorage.getItem('token')}`}
+    }).then(parseResponse)
+    .then(createWelcomeMessage)
+    userSetup()
+}
+
 function animateMenu() {
     $.menu.classList.toggle("animated")
     document.querySelector('#nav-links').classList.toggle("animated")
@@ -248,3 +256,13 @@ function logout() {
 function parseResponse(response) {
     return response.json()
 }
+
+// L2zc4Y8Ci0aeICj7vITDSJ66eabbtLi1EtVs0oR8 AWS Secret access Key
+
+// AKIAZ3YHFSU3I3GJGGWT access key ID
+
+// us-east-2 region
+
+// arn:  arn:aws:s3:::looksy-user-avatar
+
+// arn:aws:iam::678083007798:user/tj_looksy_backend
