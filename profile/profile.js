@@ -166,24 +166,11 @@ function uploadFile(event, user) {
         body: formData
     }).then(parseResponse)
     .then(({data, error}) => {
-        const message = error
-            // If there was an error, show it
-            ? `There was an error: ${error}`
-            // Otherwise, show the URL of the uploaded file
-            : `File was uploaded to: <a href="${data}">${data}</a>`
-        $message.innerHTML = `<p>${message}</p>`;
-    }).catch(error => {
-        // If there was a problem, show the error message
-        $message.innerHTML = `
-            <p>There was an error: ${error.message}</p>
-        `;
-    });
+        updateUserImage(data, user)
+        .then(parseResponse)
+        .then(renderUpdatedImage)
+    })
 }
-        // updateUserImage(data, user)
-        //     .then(parseResponse)
-//         //     .then(renderUpdatedImage)
-//     })
-// }
 
 function renderUpdatedImage(user) {
     const img = document.querySelector('#avatar')
