@@ -24,32 +24,74 @@ function displayProfile(user) {
     createMenu()
     renderUserAvatar(user)
     renderBio(user)
-    renderBioEditButton(user)
+    const editButton = document.querySelector('.edit-button')
+    editButton.addEventListener('click', (event) => renderBioForm(user))
+    // renderBioEditButton(user)
     $.upload.addEventListener('submit', (event) => uploadFile(event, user))
 }
 
-function renderBioEditButton(user) {
-    const about = document.querySelector('#bio')
-    const editButton = renderEditButton()
-    about.insertAdjacentElement('afterend', editButton)
-    editButton.addEventListener('click', (event) => renderBioTextArea(event, user))
+// function renderBioEditButton(user) {
+//     const about = document.querySelector('#bio')
+//     const editButton = renderEditButton()
+//     about.insertAdjacentElement('afterend', editButton)
+//     editButton.addEventListener('click', (event) => renderBioTextArea(event, user))
+// }
+
+// function renderEditButton() {
+//     const editButton = document.createElement('button')
+//     editButton.textContent = "Edit Bio"
+//     editButton.classList.add('edit-button')
+//     return editButton
+// }
+
+function renderBioForm(user) {
+    toggleEditButton()
+    console.log("edit toggle")
+    const bioFormDiv = document.querySelector('#bio-form-div')
+    const bioForm = createBioTextArea(bioFormDiv, user)
+    // const bioForm = createBioTextArea(bioFormDiv, user)
+
+    // const bioForm = document.querySelector('#user-bio-form')
+    // toggleBioForm(bioForm)
+    // const bio = document.querySelector('#user-bio-form')
+    // bio.value = user.bio
+    // bioForm.addEventListener('submit', (event) => updateUserBio(event, user))
 }
 
-function renderEditButton() {
-    const editButton = document.createElement('button')
-    editButton.textContent = "Edit Bio"
-    editButton.classList.add('edit-button')
-    return editButton
-}
-
-function renderBioTextArea(event, user) {
-    document.querySelector('.edit-button').remove()
-    const bioForm = document.querySelector('#user-bio-form')
-    bioForm.classList.toggle('hidden')
-    const bio = document.querySelector('.user-bio-form')
-    bio.value = user.bio
-    const saveButton = document.querySelector('.bio-save-button')
+function createBioTextArea(div, user) {
+    const bioForm = document.createElement('form')
+    bioForm.classList.add("user-bio-form")
+    div.appendChild(bioForm)
+    const bioTextArea = renderTextArea(user)
+    const saveButton = renderSaveButton()
+    bioForm.append(bioTextArea, saveButton)
     bioForm.addEventListener('submit', (event) => updateUserBio(event, user))
+    return bioForm
+}
+
+function renderSaveButton() {
+    const saveButton = document.createElement('button')
+    saveButton.type = "submit"
+    saveButton.textContent = "Save"
+    saveButton.classList.add("bio-save-button")
+    return saveButton
+}
+
+function renderTextArea(user) {
+    const textArea = document.createElement('textarea')
+    textArea.value = user.bio
+    textArea.name = "bio"
+    textArea.classList.add('bio-text-area') 
+    return textArea
+}
+
+
+function toggleEditButton() {
+    document.querySelector('.edit-button').classList.toggle('hidden')
+}
+
+function toggleBioForm(bioForm) {
+    bioForm.classList.toggle('hidden')
 }
 
 function updateUserBio(event, user) {
@@ -68,13 +110,20 @@ function updateUserBio(event, user) {
             }
         })
     }).then(parseResponse)
-    .then(console.log)
+    .then(renderBio)
+    defaultBioLook()
+}
+
+function defaultBioLook() {
+    const userBioForm = document.querySelector('.user-bio-form')
+    userBioForm.classList.toggle('hidden')
+    const editButton = document.querySelector('.edit-button')
+    editButton.classList.toggle('hidden')
 }
 
 function renderBio(user) {
     const bio = document.querySelector('#bio')
-    console.log(user, user.bio)
-    bio.textContent = user.bio
+    bio.innerHTML = user.bio
     // if (bio.innerHTML === undefined) {
     //     bio.innerHTML === `<em>"No user bio, click edit to make one"</em>`
     // }
@@ -114,14 +163,27 @@ function uploadFile(event, user) {
     const formData = new FormData(event.target)
     fetch($.uploadURL, {
         method: "POST",
-        body: {formData}
+        body: formData
     }).then(parseResponse)
     .then(({data, error}) => {
-        updateUserImage(data, user)
-            .then(parseResponse)
-            .then(renderUpdatedImage)
-    })
+        const message = error
+            // If there was an error, show it
+            ? `There was an error: ${error}`
+            // Otherwise, show the URL of the uploaded file
+            : `File was uploaded to: <a href="${data}">${data}</a>`
+        $message.innerHTML = `<p>${message}</p>`;
+    }).catch(error => {
+        // If there was a problem, show the error message
+        $message.innerHTML = `
+            <p>There was an error: ${error.message}</p>
+        `;
+    });
 }
+        // updateUserImage(data, user)
+        //     .then(parseResponse)
+//         //     .then(renderUpdatedImage)
+//     })
+// }
 
 function renderUpdatedImage(user) {
     const img = document.querySelector('#avatar')
@@ -178,3 +240,6 @@ function animateMenu() {
     document.querySelector('#nav-links').classList.toggle("animated")
     document.querySelector('.menu-bg').classList.toggle("animated-bg")
 }
+
+
+// Hi my name is TJ and I'm actually the creator of Looksy. It's so cool to see this app come together and share it with people!

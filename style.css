@@ -16,7 +16,14 @@ h1 { margin-bottom: 0px;}
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: red;
+}
+
+#photo-upload-form {
+    margin-bottom: 50px;
+}
+
+#bio {
+    font-size: 10px;
 }
 
 .create-user-button, .login-button {
