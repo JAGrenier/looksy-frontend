@@ -8,6 +8,7 @@ const $ = {
 
 const queryParams = new URLSearchParams(window.location.search)
 $.userId = queryParams.get('user_id')
+$.menu.addEventListener('click', animateMenu)
 
 fetch(`${$.baseURL}/users/${$.userId}`, {
     method: "GET",
@@ -26,36 +27,13 @@ function displayProfile(user) {
     renderBio(user)
     const editButton = document.querySelector('.edit-button')
     editButton.addEventListener('click', (event) => renderBioForm(user))
-    // renderBioEditButton(user)
     $.upload.addEventListener('submit', (event) => uploadFile(event, user))
 }
 
-// function renderBioEditButton(user) {
-//     const about = document.querySelector('#bio')
-//     const editButton = renderEditButton()
-//     about.insertAdjacentElement('afterend', editButton)
-//     editButton.addEventListener('click', (event) => renderBioTextArea(event, user))
-// }
-
-// function renderEditButton() {
-//     const editButton = document.createElement('button')
-//     editButton.textContent = "Edit Bio"
-//     editButton.classList.add('edit-button')
-//     return editButton
-// }
-
 function renderBioForm(user) {
     toggleEditButton()
-    console.log("edit toggle")
     const bioFormDiv = document.querySelector('#bio-form-div')
-    const bioForm = createBioTextArea(bioFormDiv, user)
-    // const bioForm = createBioTextArea(bioFormDiv, user)
-
-    // const bioForm = document.querySelector('#user-bio-form')
-    // toggleBioForm(bioForm)
-    // const bio = document.querySelector('#user-bio-form')
-    // bio.value = user.bio
-    // bioForm.addEventListener('submit', (event) => updateUserBio(event, user))
+    createBioTextArea(bioFormDiv, user)
 }
 
 function createBioTextArea(div, user) {
@@ -79,19 +57,14 @@ function renderSaveButton() {
 
 function renderTextArea(user) {
     const textArea = document.createElement('textarea')
-    textArea.value = user.bio
+    textArea.value = document.querySelector('#bio').textContent
     textArea.name = "bio"
     textArea.classList.add('bio-text-area') 
     return textArea
 }
 
-
 function toggleEditButton() {
     document.querySelector('.edit-button').classList.toggle('hidden')
-}
-
-function toggleBioForm(bioForm) {
-    bioForm.classList.toggle('hidden')
 }
 
 function updateUserBio(event, user) {
@@ -115,18 +88,17 @@ function updateUserBio(event, user) {
 }
 
 function defaultBioLook() {
-    const userBioForm = document.querySelector('.user-bio-form')
-    userBioForm.classList.toggle('hidden')
-    const editButton = document.querySelector('.edit-button')
-    editButton.classList.toggle('hidden')
+    document.querySelector('.user-bio-form').remove()
+    document.querySelector('.edit-button').classList.toggle('hidden')
 }
 
 function renderBio(user) {
     const bio = document.querySelector('#bio')
-    bio.innerHTML = user.bio
-    // if (bio.innerHTML === undefined) {
-    //     bio.innerHTML === `<em>"No user bio, click edit to make one"</em>`
-    // }
+    if (user.bio.length == 0) {
+        bio.innerHTML = `<em>No user bio, click 'Edit Bio' to make one</em>`
+    } else {
+        bio.innerHTML = user.bio
+    }
 }
 
 function renderUserAvatar(user) {
@@ -193,18 +165,6 @@ async function updateUserImage(data, user) {
     })
 }
 
-// .then(parseResponse)
-//     .then(({data, error}) => {
-//         const message = error
-//             ? `There was an error: ${error}`
-//             : `File was uploaded to: <a href="${data}">${data}</a>`
-//         $message.innerHTML = `<p>${message}</p>`;
-//     }).catch(error => {
-//         $message.innerHTML = `<p>There was an error: ${error.message}</p>`
-//     })
-
-$.menu.addEventListener('click', animateMenu)
-
 function contactOverlay() {
     const overlay = document.querySelector('#contact-overlay')
     if (overlay.style.display === "flex") {
@@ -227,6 +187,3 @@ function animateMenu() {
     document.querySelector('#nav-links').classList.toggle("animated")
     document.querySelector('.menu-bg').classList.toggle("animated-bg")
 }
-
-
-// Hi my name is TJ and I'm actually the creator of Looksy. It's so cool to see this app come together and share it with people!
