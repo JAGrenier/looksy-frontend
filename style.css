@@ -237,6 +237,10 @@ header {
     height:80px;
 }
 
+#menu-bg.menu-bg.animated-bg {
+    opacity: 0.9;
+}
+
 h3 {
     margin-bottom: 5px;
     display: inline-flex
