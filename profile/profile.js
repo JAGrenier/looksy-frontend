@@ -26,7 +26,6 @@ function displayProfile(user) {
     renderBio(user)
     renderBioEditButton(user)
     $.upload.addEventListener('submit', (event) => uploadFile(event, user))
-    return user
 }
 
 function renderBioEditButton(user) {
@@ -69,15 +68,16 @@ function updateUserBio(event, user) {
             }
         })
     }).then(parseResponse)
-    .then(renderBio)
+    .then(console.log)
 }
 
 function renderBio(user) {
     const bio = document.querySelector('#bio')
-    bio.textContent = user.bio 
-    if (bio.textContent === null) {
-        bio.innerHTML === `<em>"No user bio, click edit to make one"</em>`
-    }
+    console.log(user, user.bio)
+    bio.textContent = user.bio
+    // if (bio.innerHTML === undefined) {
+    //     bio.innerHTML === `<em>"No user bio, click edit to make one"</em>`
+    // }
 }
 
 function renderUserAvatar(user) {
@@ -114,7 +114,7 @@ function uploadFile(event, user) {
     const formData = new FormData(event.target)
     fetch($.uploadURL, {
         method: "POST",
-        body: formData
+        body: {formData}
     }).then(parseResponse)
     .then(({data, error}) => {
         updateUserImage(data, user)

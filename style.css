@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono&family=Duru+Sans&display=swap");
 
-.header > a:visited {
+.header > a:visited, .header > a:hover, .header > a:link {
     color: #312F2F;
     text-decoration: none;
 }
@@ -10,6 +10,40 @@ a, a:visited { color:gray; }
 .title-card {padding-left: 35px;}
 
 h1 { margin-bottom: 0px;}
+
+.user-login-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+}
+
+.create-user-button, .login-button {
+    border-radius: 15px;
+    background-color: #DCEDFF;
+    margin: 10px;
+    height:50px;
+    width:150px;
+}
+
+.create-user {
+    margin-top: 30px;
+}
+
+.new-user-form, .login-form {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-user-form > input, .login-form > input {
+    margin: 10px;
+    height: 50px;
+    width: 250px;
+    border-radius: 15px;
+} 
 
 .title-card > p {
     margin:auto;
@@ -204,8 +238,8 @@ h3 {
 .favorite-button, .favorite-button.favorited {
     float: right;
     color: black;
-    height: 30px;
-    width: 30px;
+    height: 50px;
+    width: 50px;
     font-size: 40px;
     border: none;
     background-color: #DCEDFF;
