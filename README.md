@@ -39,8 +39,11 @@ Visualization is something everyone struggle with.  Have you ever moved and stru
 ## Contact 
 
 Author : TJ Bachorz
+
 [Github](https://github.com/TJBachorz)
+
 [Linked-in](https://www.linkedin.com/in/tjbachorz/)
+
 [Email](tjbachorz@gmail.com)
 
 ## License
