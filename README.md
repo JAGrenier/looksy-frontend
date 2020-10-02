@@ -12,7 +12,7 @@
 
 ## Intro Video
 
-[Check out MealPlanner!](https://www.loom.com/share/c280f34e2cc94b17b930588afb980799)
+[Check out Looksy!](https://www.youtube.com/watch?v=HPJ6KVPMPac)
 
 ## About 
 
