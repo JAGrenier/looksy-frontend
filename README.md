@@ -1,4 +1,4 @@
-# [Looksy}(https://looksy-7468b.web.app/)
+# [Looksy](https://looksy-7468b.web.app/)
 
 >An interior decorating AR experience
 
