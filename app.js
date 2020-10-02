@@ -166,7 +166,7 @@ function renderAllModels(model) {
 }
 
 function checkIfFavorited(model, favoriteButton) {
-    const favorite = model.favorites.find(favorite => favorite.user_id === $.userId)
+    const favorite = model.favorites.find(favorite => favorite.user_id === localStorage.getItem('id'))
     if (favorite) {
         toggleFavoriteClass(favoriteButton)
         favoriteButton.dataset.favId = favorite.id
@@ -185,15 +185,20 @@ function createOrDestoryFavorite(event) {
 
 function toggleFavoriteClass(target) {
     target.classList.toggle("favorited")
+    if (target.classList.contains("favorited")) {
+        target.textContent = "❤️"
+    } else {
+        target.textContent = "🤍"
+    }
 }
 
-function destroyFavorite(event) {
-    fetchCallFavorites(`${$.baseURL}/favorites/${event.target.dataset.favId}`, "DELETE")
+async function destroyFavorite(event) {
+    await fetchCallFavorites(`${$.baseURL}/favorites/${event.target.dataset.favId}`, "DELETE")
     delete event.target.dataset.favId
 }
 
 function createFavorite(event) {
-    const favorite = {user_id: $.userId, item_id: event.target.dataset.modelId}
+    const favorite = {user_id: localStorage.getItem('id'), item_id: event.target.dataset.modelId}
     fetchCallFavorites(`${$.baseURL}/favorites`, "POST", favorite)
         .then(parseResponse)
         .then(favorite => setFavoriteId(favorite, event))
@@ -203,7 +208,7 @@ async function setFavoriteId(favorite, event) {
     event.target.dataset.favId = favorite.id
 }
 
-function fetchCallFavorites(url, method, bodyData=null) {
+async function fetchCallFavorites(url, method, bodyData=null) {
     const headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -216,10 +221,12 @@ function fetchCallFavorites(url, method, bodyData=null) {
 function renderFavoriteButton(model) {
     const favoriteButton = document.createElement('button')
     favoriteButton.classList.add("favorite-button")
-    favoriteButton.innerHTML = `&hearts;`
+    favoriteButton.textContent = "🤍"
     favoriteButton.dataset.modelId = model.id
     return favoriteButton
 }
+
+// "&hearts;"
 
 function renderModelName(model) {
     const name = document.createElement('h3')
@@ -255,13 +262,3 @@ function logout() {
 function parseResponse(response) {
     return response.json()
 }
-
-// L2zc4Y8Ci0aeICj7vITDSJ66eabbtLi1EtVs0oR8 AWS Secret access Key
-
-// AKIAZ3YHFSU3I3GJGGWT access key ID
-
-// us-east-2 region
-
-// arn:  arn:aws:s3:::looksy-user-avatar
-
-// arn:aws:iam::678083007798:user/tj_looksy_backend

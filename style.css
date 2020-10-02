@@ -244,11 +244,11 @@ h3 {
 
 .favorite-button, .favorite-button.favorited {
     float: right;
-    color: black;
     height: 50px;
     width: 50px;
     font-size: 40px;
     border: none;
+    cursor: pointer;
     background-color: #DCEDFF;
     margin-right: 5px;
 }
@@ -270,12 +270,6 @@ main {
     color: gray;
     margin-top: 0px;
 }
-
-/* @media (min-width: 812px) {
-    body {
-        background-color: red;
-    }
-} */
 
 /* PROFILE PAGE */
 
