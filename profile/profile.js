@@ -94,7 +94,8 @@ function defaultBioLook() {
 
 function renderBio(user) {
     const bio = document.querySelector('#bio')
-    if (user.bio.length == 0 || user.bio === null) {
+    console.log(user.bio)
+    if (user.bio == null || user.bio.length == 0) {
         bio.innerHTML = `<em>No user bio, click 'Edit Bio' to make one</em>`
     } else {
         bio.innerHTML = user.bio
