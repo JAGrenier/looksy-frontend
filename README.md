@@ -12,7 +12,7 @@
 
 ## Intro Video
 
-[Check out MealPlanner!](https://www.loom.com/share/c280f34e2cc94b17b930588afb980799)
+[Check out Looksy!](https://www.youtube.com/watch?v=HPJ6KVPMPac)
 
 ## About 
 
@@ -23,6 +23,8 @@ Visualization is something everyone struggle with.  Have you ever moved and stru
 * Create a unique user profile, complete with a profile picture and a bio.
 * Browse different Looksy objects and favorite your top picks.
 * Harness Google's Model-Viewer 3D AR technology to place 3D renders in your environment in real-time.
+
+NOTE:  Because of the evolving nature of AR technology Looksy may not be optimized on all web-browsers.  Google Chrome is recommended.
 
 ## Technologies
 
