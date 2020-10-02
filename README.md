@@ -8,7 +8,6 @@
 * [Features](#features)
 * [Technologies](#technologies)
 * [Contact](#contact)
-* [License](#license)
 
 ## Intro Video
 
