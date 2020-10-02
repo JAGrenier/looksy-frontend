@@ -24,6 +24,8 @@ Visualization is something everyone struggle with.  Have you ever moved and stru
 * Browse different Looksy objects and favorite your top picks.
 * Harness Google's Model-Viewer 3D AR technology to place 3D renders in your environment in real-time.
 
+NOTE:  Because of the evolving nature of AR technology Looksy may not be optimized on all web-browsers.  Google Chrome is recommended.
+
 ## Technologies
 
 * Ruby on Rails
